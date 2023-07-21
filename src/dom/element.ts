@@ -645,6 +645,21 @@ export class Element extends Node {
     }
   }
 
+  setAttributeNS(
+    namespace: NamespaceURI,
+    qualifiedName: string,
+    value: string,
+    options?: AttributeCreationOptions,
+  ){
+    const name = String(qualifiedName?.toLowerCase());
+    const strValue = String(value);
+    
+    if(namespace === "http://www.w3.org/XML/1998/namespace"){
+      this.attributes[setNamedNodeMapValueSym]('xmlns', namespace);
+      this.attributes[setNamedNodeMapValueSym](name, strValue)
+    }
+  }
+
   removeAttribute(rawName: string) {
     const name = String(rawName?.toLowerCase());
     this.attributes[removeNamedNodeMapAttrSym](name);

@@ -240,7 +240,9 @@ export class Document extends Node {
   ): Element {
     if (namespace === "http://www.w3.org/1999/xhtml") {
       return this.createElement(qualifiedName, options);
-    } else {
+    } else if(namespace === "http://www.w3.org/2000/svg"){
+      return this.createElement(qualifiedName, options)
+    }else {
       throw new Error(
         `createElementNS: "${namespace}" namespace unimplemented`,
       ); // TODO
